@@ -4,7 +4,7 @@ const initialState={
 let id = 0;
 const ADD_PERSON='ADD_PERSON',
     DELETE_PERSON='DELETE_PERSON',
-    VIEW_PERSONS='VIEW_PERSONS';
+    VIEW_PERSON='VIEW_PERSON';
 
 
 export function addPerson(person) {
@@ -13,6 +13,7 @@ export function addPerson(person) {
         person
     }
 }
+
 
   const reducer = (state = initialState, action) => {
         console.log(state, "state")
@@ -28,6 +29,12 @@ export function addPerson(person) {
                 return {
                     ...state,
                     person: state.person.filter(person => person.id !== action.payload)
+                }
+            case 'VIEW_PERSON':
+                let found = state.person.length<2?null:state.person.find(person => person.id === action.payload)
+                console.log(found,'view person')
+                return{
+                    found
                 }
             default:
                 return {

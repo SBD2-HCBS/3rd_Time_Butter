@@ -1,21 +1,17 @@
 import './App.css';
 import AddUser from "./components/AddUser";
-import React from 'react'
+import React, {useState} from 'react'
 
-
-function Test(props){
-  console.log(props)
-  return(
-      <div>
-        Hello Person
-      </div>
-  )
-}
 
 function App() {
+const [style, setStyle] = useState(true)
+    const changeStyle=()=>{
+    console.log('testing you clicked button')
+    setStyle(!style)
+    }
   return (
       <div className="App">
-        <AddUser />
+        <AddUser changeStyle={changeStyle} style={style} />
       </div>
   );
 }

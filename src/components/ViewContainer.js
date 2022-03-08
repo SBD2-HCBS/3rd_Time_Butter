@@ -4,8 +4,14 @@ import {useDispatch, useSelector} from 'react-redux'
 
 const ViewContainer = (props) => {
     const [people, runningThruPeople] = React.useState([])
+    const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
 
+useEffect(()=>{
+    runningThruPeople(person)
+    console.log(people)
+
+},[person])
     console.log(person)
     return(
         <div>
@@ -15,6 +21,7 @@ const ViewContainer = (props) => {
                 <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName} `
                 <button>Add</button>
                 <button>Delete</button>
+                    <button>View Person</button>
 
                 </li>
             ))}

@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
 import ViewContainer from './ViewContainer'
+import {Button} from 'reactstrap';
+import '../App.css';
 
+let id=0
+let san;
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person);
-
+    const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch()
 
     const [firstName,setFirstName] = useState(''),
@@ -21,6 +25,7 @@ const AddUser=(props)=>{
 
     const addNewPerson = () => {
         setPerson({
+          id:++id,
             firstName: firstName,
             lastName: lastName,
             age: age,
@@ -35,7 +40,10 @@ const AddUser=(props)=>{
             type:'ADD_PERSON',
             payload:person
         })
-        return()=>setLastName(''),setFirstName(''),setAge(''),setHobbies('')
+       setSubmit(true);
+        setTimeout(()=>{setSubmit(false)},1500)
+
+        return()=>setLastName(''),setFirstName(''),setAge(''),setHobbies(''),san=''
 
 
     },[person])
@@ -43,12 +51,14 @@ const AddUser=(props)=>{
     const handleSubmit = (e) => {
         e.preventDefault();
         addNewPerson()
+
         setTimeout(()=>addPerson(person),100)
     }
+    console.log(props.style)
     return(
         <React.Fragment>
         <form onSubmit={handleSubmit}>
-            <title><h2>Hello</h2></title>
+            <span><h2>Hello</h2></span>
             <input
                 type='text'
                 name={firstName}
@@ -73,10 +83,11 @@ const AddUser=(props)=>{
                 placeholder="Hobbies"
                 onChange={(e)=>setHobbies(e.target.value)}
             />
-            <button>Submit Hello</button>
+            <Button color={san}>Submit Hello</Button>
 
         </form>
-            <ViewContainer   />
+            <ViewContainer />
+            {submit?(<div className='green'><h2>Congrats</h2></div>):null}
         </React.Fragment>
     )
 }
