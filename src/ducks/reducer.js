@@ -38,7 +38,8 @@ export function viewPerson(id){
                     person: state.person.filter(person => person.id !== action.payload)
                 }
             case 'VIEW_PERSON':
-                let found = state.person.length<2?null:state.person.find(person => person.id === action.payload)
+               // let found = state.person.length<2?null:state.person.find(person => person.id === action.payload)
+                let found = state.person.slice(action.payload, 1)
                 console.log(found,'view person')
                 return{
                     found

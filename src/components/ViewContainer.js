@@ -13,8 +13,11 @@ useEffect(()=>{
 
 },[person])
 
-    const onClick = (e) => {
-
+    const deletePerson = (id) => {
+dispatch({
+    type:'VIEW_PERSON',
+    payload:id
+})
     }
     console.log(person)
     return(
@@ -25,7 +28,7 @@ useEffect(()=>{
                 <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName}  <span>AGE: ${person.age}</span>
                     <p>${person.hobbies}</p>`
                 <button>Add</button>
-                <button onClick={deletePerson}>Delete</button>
+                <button onClick={()=>deletePerson(index)}>Delete</button>
                     <button>View Person</button>
 
                 </li>
