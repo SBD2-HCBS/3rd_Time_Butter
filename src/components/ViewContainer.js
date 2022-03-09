@@ -17,10 +17,11 @@ useEffect(()=>{
       console.log(people)
   }
     return()=> {
+      runningThruPeople([])
        isMounted=false;
     }
 
-},[person, people])
+},[person])
 
 
     const viewPerson = (id) => {
@@ -30,11 +31,17 @@ dispatch({
 })
     }
 
-    const deletePerson = (id) => {
-    dispatch({
-        type:'DELETE_PERSON',
-        payload:id
-    })
+
+    const deletePerson = (id) =>{
+    console.log(id)
+   if (person.length >0) {
+       dispatch({
+           type: 'DELETE_PERSON',
+           payload: --id
+       })
+   }else {
+       window.alert('You cannot delete an empty list')
+   }
     }
 
     return(
@@ -42,19 +49,25 @@ dispatch({
            <h3>
                 {people.map((person, index) => (
 
-                    <li key={index === index ? index += 1 : index}>`${person.firstName} + ', '${person.lastName} <span>AGE: ${person.age}</span>
-                        <p>${person.hobbies}</p>
+                    <li key={index === index ? index += 1 : index}>Full Name: {person.firstName} {person.lastName}
+                        <p>AGE: {person.age}</p>
+                        <p>{person.hobbies}</p>
 
                         <button onClick={()=>deletePerson(index)} >Delete</button>
 
                         <Link to='/viewSingleUser' state={{from:person}}>
                         <button onClick={() => viewPerson(index)}>View Person</button>
+
                         </Link>
 
                     </li>
                 ))}
             </h3>
-
+            {people.id === 0 || people.length === 0 ?
+                <Link to='/addUser'>
+                    <button>Return to Form</button>
+                </Link>
+                : null}
         </div>
     )
 }

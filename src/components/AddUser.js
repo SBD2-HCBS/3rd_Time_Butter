@@ -4,8 +4,9 @@ import {addPerson} from'../ducks/reducer'
 import ViewContainer from './ViewContainer'
 import {Button, Col, Row} from 'reactstrap';
 import '../App.css';
+import {Link} from "react-router-dom";
 
-let id=1;
+let id=0;
 let san = "secondary";
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person);
@@ -17,10 +18,11 @@ const AddUser=(props)=>{
         [age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
         [person,setPerson] = useState({
-            firstName,
-            lastName,
+            id,
+            firstName:'',
+            lastName:'',
             age,
-            hobbies
+            hobbies:''
         });
 
     const addNewPerson = () => {
@@ -63,7 +65,7 @@ if(isMounted) {
         <form onSubmit={handleSubmit}>
             <Col>
                 <Row>
-                    <span><h2>Hello</h2></span>
+                    <span><h2>Fill Out Form</h2></span>
                 </Row>
 
 
@@ -100,7 +102,9 @@ if(isMounted) {
             <Button variant={san}>Submit Form</Button>
             </Col>
         </form>
-            <ViewContainer />
+            <Link to='/viewContainer'  >
+            <Button>See List</Button>
+            </Link>
             {submit?(<div className='green'><h2>Congrats</h2></div>):null}
 
         </React.Fragment>

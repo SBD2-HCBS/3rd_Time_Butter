@@ -16,12 +16,10 @@ const ViewSingleUser=(props)=>{
     return(
         <div>
             <Col>
-                <Row><h3>{from.id}</h3></Row>
-                <Row><h2>{from.firstName}</h2></Row>
-                <Row><h2>{from.lastName}</h2></Row>
-                <Row><h2>{from.age}</h2></Row>
-                <Row><h3>{from.hobbies}</h3></Row>
-                <Link to='/addUser' >Return Back to Form</Link>
+                <Row><h2>Full Name: {from.firstName} {from.lastName}</h2></Row>
+                <Row><h2>Age: {from.age}</h2></Row>
+                <Row><h3>Hobbies: {from.hobbies}</h3></Row>
+                <Link to='/addUser'>Return Back to Form</Link>
             </Col>
         </div>
     )

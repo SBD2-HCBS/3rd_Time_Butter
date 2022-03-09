@@ -8,6 +8,7 @@ import store from './ducks/store'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AddUser from './components/AddUser'
 import ViewSingleUser from './components/ViewSingleUser'
+import ViewContainer from "./components/ViewContainer";
 
 
 ReactDOM.render(
@@ -16,8 +17,8 @@ ReactDOM.render(
             <Routes>
                 <Route path='/' element={<App />} />
                 <Route path='/adduser' element={<AddUser/>} />
-                <Route path='/viewSingleUser' element={<ViewSingleUser/>} />
-
+                <Route path='/viewSingleUser' element={<ViewSingleUser/>}/>
+                <Route path='/viewContainer' element={<ViewContainer/>}  />
             </Routes>
 
 </Router>

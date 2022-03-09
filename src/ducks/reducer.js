@@ -53,7 +53,7 @@ const filtered = (id,arr)=>{
                 let filteredList = filtered(action.payload,state.person)
                 console.log(filteredList)
                 return {
-                    ...state,
+
                     person:[...filteredList]
                 }
                 return {
