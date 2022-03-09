@@ -13,23 +13,23 @@ useEffect(()=>{
 
 },[person])
 
-    const deletePerson = (id) => {
+    const viewPerson = (id) => {
 dispatch({
     type:'VIEW_PERSON',
     payload:id
 })
     }
-    console.log(person)
+
     return(
         <div>
             <h3>
-            {person.map((person, index) => (
+            {people.map((person, index) => (
 
                 <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName}  <span>AGE: ${person.age}</span>
                     <p>${person.hobbies}</p>`
                 <button>Add</button>
-                <button onClick={()=>deletePerson(index)}>Delete</button>
-                    <button>View Person</button>
+                <button>Delete</button>
+                    <button  onClick={()=>viewPerson(index)}>View Person</button>
 
                 </li>
             ))}

@@ -5,7 +5,7 @@ import ViewContainer from './ViewContainer'
 import {Button, Col, Row} from 'reactstrap';
 import '../App.css';
 
-let id=0
+let id=1;
 let san = "secondary";
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person);
@@ -54,7 +54,7 @@ const AddUser=(props)=>{
 
         setTimeout(()=>addPerson(person),100)
     }
-    console.log(props.style)
+
     return(
         <React.Fragment>
         <form onSubmit={handleSubmit}>
@@ -70,24 +70,28 @@ const AddUser=(props)=>{
                 name={firstName}
                 placeholder="First Name"
                 onChange={(e)=>setFirstName(e.target.value)}
+                required
             />
             <input
                 type='text'
                 name={lastName}
                 placeholder="last Name"
                 onChange={(e)=>setLastName(e.target.value)}
+                required
             />
             <input
                 type={'number'}
                 name={age}
                 placeholder="age"
                 onChange={(e)=>setAge(e.target.value)}
+                required
             />
             <input
                 type={'text'}
                 name={hobbies}
                 placeholder="Hobbies"
                 onChange={(e)=>setHobbies(e.target.value)}
+                required
             />
 </Row>
             <Button variant={san}>Submit Form</Button>
