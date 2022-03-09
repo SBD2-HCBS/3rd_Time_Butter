@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import {Link, useNavigate } from "react-router-dom";
+import {Link  } from "react-router-dom";
 
 
 const ViewContainer = (props) => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
-const nav=useNavigate()
+
 
 
 useEffect(()=>{

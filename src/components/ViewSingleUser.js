@@ -1,6 +1,6 @@
 import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
-import {useLocation} from 'react-router-dom'
+import {useDispatch } from 'react-redux'
+import {useLocation,Link} from 'react-router-dom'
 import {Col, Row} from 'reactstrap'
 const ViewSingleUser=(props)=>{
     const dispatch = useDispatch()
@@ -16,11 +16,12 @@ const ViewSingleUser=(props)=>{
     return(
         <div>
             <Col>
-                <Row>{from.id}</Row>
-                <Row>{from.firstName}</Row>
-                <Row>{from.lastName}</Row>
-                <Row>{from.age}</Row>
-                <Row>{from.hobbies}</Row>
+                <Row><h3>{from.id}</h3></Row>
+                <Row><h2>{from.firstName}</h2></Row>
+                <Row><h2>{from.lastName}</h2></Row>
+                <Row><h2>{from.age}</h2></Row>
+                <Row><h3>{from.hobbies}</h3></Row>
+                <Link to='/addUser' >Return Back to Form</Link>
             </Col>
         </div>
     )
