@@ -6,7 +6,7 @@ import {Button} from 'reactstrap';
 import '../App.css';
 
 let id=0
-let san;
+let san = "secondary";
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person);
     const [submit,setSubmit] = useState(false)
@@ -83,7 +83,7 @@ const AddUser=(props)=>{
                 placeholder="Hobbies"
                 onChange={(e)=>setHobbies(e.target.value)}
             />
-            <Button color={san}>Submit Hello</Button>
+            <Button variant={san}>Submit Hello</Button>
 
         </form>
             <ViewContainer />

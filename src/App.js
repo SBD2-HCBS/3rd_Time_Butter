@@ -3,7 +3,7 @@ import AddUser from "./components/AddUser";
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'reactstrap';
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 const [style, setStyle] = useState(true)

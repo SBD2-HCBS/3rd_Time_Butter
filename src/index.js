@@ -7,12 +7,17 @@ import {Provider} from 'react-redux'
 import store from './ducks/store'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AddUser from './components/AddUser'
+import ViewSingleUser from './components/ViewSingleUser'
+
+
 ReactDOM.render(
     <Provider store={store}>
         <Router>
             <Routes>
                 <Route path='/' element={<App />} />
                 <Route path='/adduser' element={<AddUser/>} />
+                <Route path='/viewUser:id' element={<ViewSingleUser/>} />
+
             </Routes>
 
 </Router>
