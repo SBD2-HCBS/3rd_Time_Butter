@@ -5,9 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './ducks/store'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AddUser from './components/AddUser'
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+            <Routes>
+                <Route path='/' element={<App />} />
+                <Route path='/adduser' element={<AddUser/>} />
+            </Routes>
+
+</Router>
     </Provider>,
     document.getElementById('root')
 );
