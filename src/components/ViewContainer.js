@@ -9,9 +9,9 @@ const ViewContainer = (props) => {
     const person = useSelector(state=>state.person);
 
 
-
-useEffect(()=>{
     let isMounted=true;
+useEffect(()=>{
+
   if(isMounted) {
       runningThruPeople(person)
       console.log(people)
