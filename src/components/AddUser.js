@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
 import ViewContainer from './ViewContainer'
-import {Button} from 'reactstrap';
+import {Button, Col, Row} from 'reactstrap';
 import '../App.css';
 
 let id=0
@@ -58,7 +58,13 @@ const AddUser=(props)=>{
     return(
         <React.Fragment>
         <form onSubmit={handleSubmit}>
-            <span><h2>Hello</h2></span>
+            <Col>
+                <Row>
+                    <span><h2>Hello</h2></span>
+                </Row>
+
+
+<Row>
             <input
                 type='text'
                 name={firstName}
@@ -83,11 +89,13 @@ const AddUser=(props)=>{
                 placeholder="Hobbies"
                 onChange={(e)=>setHobbies(e.target.value)}
             />
-            <Button variant={san}>Submit Hello</Button>
-
+</Row>
+            <Button variant={san}>Submit Form</Button>
+            </Col>
         </form>
             <ViewContainer />
             {submit?(<div className='green'><h2>Congrats</h2></div>):null}
+
         </React.Fragment>
     )
 }

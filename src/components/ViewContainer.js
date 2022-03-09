@@ -12,15 +12,20 @@ useEffect(()=>{
     console.log(people)
 
 },[person])
+
+    const onClick = (e) => {
+
+    }
     console.log(person)
     return(
         <div>
             <h3>
             {person.map((person, index) => (
 
-                <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName} `
+                <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName}  <span>AGE: ${person.age}</span>
+                    <p>${person.hobbies}</p>`
                 <button>Add</button>
-                <button>Delete</button>
+                <button onClick={deletePerson}>Delete</button>
                     <button>View Person</button>
 
                 </li>

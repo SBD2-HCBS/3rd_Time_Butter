@@ -14,6 +14,13 @@ export function addPerson(person) {
     }
 }
 
+export function viewPerson(id){
+    return{
+        type:VIEW_PERSON,
+        id
+    }
+}
+
 
   const reducer = (state = initialState, action) => {
         console.log(state, "state")
