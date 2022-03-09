@@ -20,20 +20,27 @@ dispatch({
 })
     }
 
+    const deletePerson = (id) => {
+    dispatch({
+        type:'DELETE_PERSON',
+        payload:id
+    })
+    }
+
     return(
         <div>
-            <h3>
-            {people.map((person, index) => (
+            {people.length>1? <h3>
+                {people.map((person, index) => (
 
-                <li key={index===index?index+=1:index}>`${person.firstName } + ', '${person.lastName}  <span>AGE: ${person.age}</span>
-                    <p>${person.hobbies}</p>`
-                <button>Add</button>
-                <button>Delete</button>
-                    <button  onClick={()=>viewPerson(index)}>View Person</button>
+                    <li key={index === index ? index += 1 : index}>`${person.firstName} + ', '${person.lastName} <span>AGE: ${person.age}</span>
+                        <p>${person.hobbies}</p>
 
-                </li>
-            ))}
-            </h3>
+                        <button onClick={()=>deletePerson(index)} >Delete</button>
+                        <button onClick={() => viewPerson(index)}>View Person</button>
+
+                    </li>
+                ))}
+            </h3>:<div>No People Added Yet</div>}
         </div>
     )
 }

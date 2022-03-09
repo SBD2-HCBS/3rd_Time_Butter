@@ -1,14 +1,8 @@
 const initialState={
-    person:[{
-        id:0,
-        firstName:'',
-        lastName:'',
-        age:0,
-        hobbies:''
-    }]
+    person:[]
 }
 
-let id = 0;
+
 const ADD_PERSON='ADD_PERSON',
     DELETE_PERSON='DELETE_PERSON',
     VIEW_PERSON='VIEW_PERSON';
@@ -34,9 +28,10 @@ const founder = (id, arr)=>{
     newArray= arr.find(item=>item.id===id)
     return newArray
 }
+
 const filtered = (id,arr)=>{
-    let newArray=[];
-    newArray= arr.filter(item=>item.id!==id)
+    let newArray= arr.filter(item=>item.id!==id)
+    return  newArray;
 }
 
   const reducer = (state = initialState, action) => {
