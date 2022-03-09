@@ -11,7 +11,7 @@ useEffect(()=>{
     runningThruPeople(person)
     console.log(people)
 
-},[person])
+},[person, people])
 
     const viewPerson = (id) => {
 dispatch({
@@ -29,7 +29,7 @@ dispatch({
 
     return(
         <div>
-            {people.length>1? <h3>
+           <h3>
                 {people.map((person, index) => (
 
                     <li key={index === index ? index += 1 : index}>`${person.firstName} + ', '${person.lastName} <span>AGE: ${person.age}</span>
@@ -40,7 +40,8 @@ dispatch({
 
                     </li>
                 ))}
-            </h3>:<div>No People Added Yet</div>}
+            </h3>
+
         </div>
     )
 }
