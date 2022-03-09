@@ -1,17 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
+import {Link, useNavigate } from "react-router-dom";
 
 
 const ViewContainer = (props) => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
+const nav=useNavigate()
+
 
 useEffect(()=>{
-    runningThruPeople(person)
-    console.log(people)
+    let isMounted=true;
+  if(isMounted) {
+      runningThruPeople(person)
+      console.log(people)
+  }
+    return()=> {
+       isMounted=false;
+    }
 
 },[person, people])
+
 
     const viewPerson = (id) => {
 dispatch({
@@ -36,7 +46,10 @@ dispatch({
                         <p>${person.hobbies}</p>
 
                         <button onClick={()=>deletePerson(index)} >Delete</button>
+
+                        <Link to='/viewSingleUser' state={{from:person}}>
                         <button onClick={() => viewPerson(index)}>View Person</button>
+                        </Link>
 
                     </li>
                 ))}

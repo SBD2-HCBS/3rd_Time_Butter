@@ -5,7 +5,8 @@ const initialState={
 
 const ADD_PERSON='ADD_PERSON',
     DELETE_PERSON='DELETE_PERSON',
-    VIEW_PERSON='VIEW_PERSON';
+    VIEW_PERSON='VIEW_PERSON',
+    INITALIZED='INITALIZED'
 
 
 export function addPerson(person) {
@@ -38,6 +39,10 @@ const filtered = (id,arr)=>{
         console.log(state, "state")
         // const {type, payload} = action
         switch (action.type) {
+            case 'INITALIZED':
+                return{
+                    ...state
+                }
             case 'ADD_PERSON':
                 console.log('hit')
                 return {

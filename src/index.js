@@ -16,7 +16,7 @@ ReactDOM.render(
             <Routes>
                 <Route path='/' element={<App />} />
                 <Route path='/adduser' element={<AddUser/>} />
-                <Route path='/viewUser:id' element={<ViewSingleUser/>} />
+                <Route path='/viewSingleUser' element={<ViewSingleUser/>} />
 
             </Routes>
 

@@ -32,26 +32,29 @@ const AddUser=(props)=>{
             hobbies:hobbies
         })
     }
+    let isMounted=true;
     useEffect(()=>{
 
-        console.log(props.person + "hello")
+if(isMounted) {
+    console.log(props.person + "hello")
 
-        dispatch({
-            type:'ADD_PERSON',
-            payload:person
-        })
-       setSubmit(true);
-        setTimeout(()=>{setSubmit(false)},1500)
-
-        return()=>setLastName(''),setFirstName(''),setAge(''),setHobbies(''),san=''
-
+    dispatch({
+        type: 'ADD_PERSON',
+        payload: person
+    })
+    setSubmit(true);
+    setTimeout(() => {
+        setSubmit(false)
+    }, 1500)
+}
+        return()=>  isMounted=false
 
     },[person])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addNewPerson()
-
+        isMounted=true
         setTimeout(()=>addPerson(person),100)
     }
 
@@ -103,11 +106,6 @@ const AddUser=(props)=>{
         </React.Fragment>
     )
 }
-const mapDispatchToProps = dispatch => {
-    return{addPerson:person => dispatch(addPerson(person))}
-}
-const mapStateToProps=(state) => ({
-    person:state.person
-})
 
-export default connect(mapStateToProps,mapDispatchToProps)(AddUser)
+
+export default AddUser
