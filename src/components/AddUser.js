@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
 import ViewContainer from './ViewContainer'
@@ -62,7 +62,10 @@ if(isMounted) {
         setSubmit(true);
         isMounted=true
         setTimeout(()=>addPerson(person),100)
-
+        setFirstName('')
+        setLastName('')
+        setAge('')
+        setHobbies('')
 
     }
 
@@ -72,7 +75,7 @@ if(isMounted) {
         <div className="App-header outSide " >
         <form onSubmit={handleSubmit}>
                     <span id='spans' ><h2>Fill Out Form</h2></span>
-<row>
+
     <div id='form' >
             <input
                 type='text'
@@ -81,6 +84,8 @@ if(isMounted) {
                 onChange={(e)=>setFirstName(e.target.value)}
                 required
 
+                value={firstName}
+
             />
             <input
                 type='text'
@@ -88,6 +93,7 @@ if(isMounted) {
                 placeholder="last Name"
                 onChange={(e)=>setLastName(e.target.value)}
                 required
+                value={lastName}
             />
             <input
                 type={'number'}
@@ -95,6 +101,7 @@ if(isMounted) {
                 placeholder="age"
                 onChange={(e)=>setAge(e.target.value)}
                 required
+                value={age}
             />
             <input
                 type={'text'}
@@ -102,9 +109,10 @@ if(isMounted) {
                 placeholder="Hobbies"
                 onChange={(e)=>setHobbies(e.target.value)}
                 required
+                value={hobbies}
             />
     </div>
-</row>
+
             <button variant={san}>Submit Form</button>
         </form>
             <Link to='/viewContainer'  >

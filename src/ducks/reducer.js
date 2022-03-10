@@ -36,8 +36,6 @@ const filtered = (id,arr)=>{
 }
 
   const reducer = (state = initialState, action) => {
-        console.log(state, "state")
-        // const {type, payload} = action
         switch (action.type) {
             case 'INITALIZED':
                 return{
