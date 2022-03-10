@@ -16,9 +16,9 @@ useEffect(()=>{
       runningThruPeople(person)
       console.log(people)
   }
-    return()=> {
+    return async()=> {
       runningThruPeople([])
-       setIsMounted(false);
+       await setIsMounted(false);
     }
 
 },[person])
@@ -29,6 +29,7 @@ const viewPerson=(id)=>{
 
     const deletePerson = (id) =>{
         console.log(id)
+        if(id!==people[0].id)people[0].id=id;
         if (person.length >0) {
             dispatch( dispatchInfo('DELETE_PERSON',id))
         }else {

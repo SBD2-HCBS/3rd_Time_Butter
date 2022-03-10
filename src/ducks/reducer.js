@@ -1,5 +1,5 @@
 const initialState={
-    person:[{id:0}]
+    person:[]
 }
 
 

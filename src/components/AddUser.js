@@ -5,7 +5,7 @@ import {addPerson} from'../ducks/reducer'
 import '../App.css';
 import {Link} from "react-router-dom";
 
-let id=0;
+
 let san = "secondary";
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person);
@@ -16,6 +16,7 @@ const AddUser=(props)=>{
         [lastName,setLastName] = useState(''),
         [age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
+        [id,setID] = useState(0),
         [person,setPerson] = useState({
             id,
             firstName,
@@ -23,11 +24,12 @@ const AddUser=(props)=>{
             age,
             hobbies
         }),
-        [isMounted,setIsMounted] = useState(false)
+        [isMounted,setIsMounted] = useState(false);
 
-    const addNewPerson = () => {
+    const addNewPerson = async() => {
+        await setID(id=>id++)
         setPerson({
-          id:++id,
+          id:id,
             firstName: firstName,
             lastName: lastName,
             age: age,
@@ -38,16 +40,15 @@ const AddUser=(props)=>{
 
 
     useEffect(()=>{
+
 if(isMounted) {
-
     dispatch(dispatchInfo("ADD_PERSON",person))
-
     setTimeout(() => {
         setSubmit(false)
     }, 1500)
 }
-        return()=> {
-           setIsMounted(false)
+        return async()=> {
+          await setIsMounted(false)
 
         }
     },[person])
