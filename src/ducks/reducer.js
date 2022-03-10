@@ -1,5 +1,6 @@
 const initialState={
-    person:[]
+    person:[],
+    id:0
 }
 
 
@@ -23,7 +24,11 @@ export function viewPerson(id){
     }
 }
 
-
+const addPersonObj=(person)=>{
+    let clone = JSON.parse(JSON.stringify(person))
+    clone.id=initialState.id
+    return clone
+}
 const founder = (id, arr)=>{
     let newArray=[];
     newArray= arr.find(item=>item.id===id)
@@ -31,7 +36,7 @@ const founder = (id, arr)=>{
 }
 
 const filtered = (id,arr)=>{
-    let newArray= arr.filter(item=>item.id?item.id!==id:item.id=1)
+    let newArray= arr.filter(item=>item.id!==id)
     return  newArray;
 }
 
@@ -42,10 +47,12 @@ const filtered = (id,arr)=>{
                     ...state
                 }
             case 'ADD_PERSON':
-                console.log('hit')
+                let people = addPersonObj(action.payload)
+                initialState.id=++initialState.id
                 return {
                     ...state,
-                    person: [...state.person, action.payload]
+                    id:initialState.id,
+                    person: [...state.person, people]
                 }
             case 'DELETE_PERSON':
                 let filteredList = filtered(action.payload,state.person)
@@ -59,7 +66,6 @@ const filtered = (id,arr)=>{
                // let found = state.person.length<2?null:state.person.find(person => person.id === action.payload)
                     let found = founder(action.payload,state.person)
                 // let found = state.find(person => person.id === action.payload)
-                console.log(found,'view person')
                 return {
                     ...state,
                     person:[found]

@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link  } from "react-router-dom";
-import {dispatchInfo} from "../ducks/actions";
+import {viewPersonFunction,deleteFunction} from "../ducks/actions";
 
 const ViewContainer = () => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
 const [isMounted,setIsMounted] = useState(true)
-
+const id = useSelector(state=>state.person.id)
 
 useEffect(()=>{
 
   if(isMounted) {
       runningThruPeople(person)
-      console.log(people)
+
   }
     return async()=> {
       runningThruPeople([])
@@ -24,14 +24,14 @@ useEffect(()=>{
 },[person])
 
 const viewPerson=(id)=>{
-    dispatch(dispatchInfo("VIEW_PERSON",id))
+    dispatch(viewPersonFunction(id))
 }
 
     const deletePerson = (id) =>{
-        console.log(id)
-        if(id!==people[0].id)people[0].id=id;
+console.log(id)
+       // if(id!==people.id)people.id=id;
         if (person.length >0) {
-            dispatch( dispatchInfo('DELETE_PERSON',id))
+            dispatch( deleteFunction(id))
         }else {
             window.alert('You cannot delete an empty list')
         }
@@ -46,10 +46,10 @@ const viewPerson=(id)=>{
                         <p>AGE: {person.age}</p>
                         <p>{person.hobbies}</p>
 
-                        <button onClick={()=>deletePerson(index)} >Delete</button>
+                        <button onClick={()=>deletePerson(person.id)} >Delete</button>
 
                         <Link to='/viewSingleUser' state={{from:person}}>
-                        <button onClick={() => viewPerson(index)}>View Person</button>
+                        <button onClick={() => viewPerson(person.id)}>View Person</button>
 
                         </Link>
 

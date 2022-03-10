@@ -1,14 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
  import {dispatchInfo} from "../ducks/actions";
 import '../App.css';
 import {Link} from "react-router-dom";
 
 
-let san = "secondary";
 const AddUser=(props)=>{
-    const statePerson = useSelector(state=>state.person);
+    const statePerson = useSelector(state=>state.person.id);
     const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch()
 
@@ -16,9 +15,8 @@ const AddUser=(props)=>{
         [lastName,setLastName] = useState(''),
         [age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
-        [id,setID] = useState(0),
+        [id,setID] = useState(),
         [person,setPerson] = useState({
-            id,
             firstName,
             lastName,
             age,
@@ -27,8 +25,8 @@ const AddUser=(props)=>{
         [isMounted,setIsMounted] = useState(false);
 
     const addNewPerson = async() => {
-        await setID(id=>id++)
-        setPerson({
+        await setID(statePerson)
+       await setPerson({
           id:id,
             firstName: firstName,
             lastName: lastName,
@@ -57,10 +55,10 @@ if(isMounted) {
     const handleSubmit = async(e) => {
         e.preventDefault();
         await setIsMounted(true)
-        addNewPerson()
+       await addNewPerson()
         setSubmit(true);
+             addPerson(person)
 
-        setTimeout(()=>addPerson(person),100)
         setFirstName('')
         setLastName('')
         setAge('')
@@ -112,7 +110,7 @@ if(isMounted) {
             />
     </div>
 
-            <button variant={san}>Submit Form</button>
+            <button >Submit Form</button>
         </form>
             <Link to='/viewContainer'  >
             <button>See List</button>

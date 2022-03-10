@@ -10,3 +10,7 @@
      payload:id
  })
 
+export const viewPersonFunction=(id)=>({
+    type:"VIEW_PERSON",
+    payload:id
+})

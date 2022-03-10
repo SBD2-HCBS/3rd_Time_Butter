@@ -1,5 +1,4 @@
 import React from 'react'
-import {useDispatch } from 'react-redux'
 import {useLocation,Link} from 'react-router-dom'
 
 const ViewSingleUser=()=>{

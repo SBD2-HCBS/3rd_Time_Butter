@@ -1,6 +1,6 @@
 import './App.css';
-import AddUser from "./components/AddUser";
-import React, {useState} from 'react'
+
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
