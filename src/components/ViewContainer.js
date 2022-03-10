@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link  } from "react-router-dom";
 import {dispatchInfo} from "../ducks/actions";
@@ -7,9 +7,9 @@ const ViewContainer = () => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
+const [isMounted,setIsMounted] = useState(true)
 
 
-    let isMounted=true;
 useEffect(()=>{
 
   if(isMounted) {
@@ -18,7 +18,7 @@ useEffect(()=>{
   }
     return()=> {
       runningThruPeople([])
-       isMounted=false;
+       setIsMounted(false);
     }
 
 },[person])

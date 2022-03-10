@@ -22,7 +22,8 @@ const AddUser=(props)=>{
             lastName,
             age,
             hobbies
-        });
+        }),
+        [isMounted,setIsMounted] = useState(false)
 
     const addNewPerson = () => {
         setPerson({
@@ -34,7 +35,7 @@ const AddUser=(props)=>{
         })
 
     }
-    let isMounted=true;
+
 
     useEffect(()=>{
 if(isMounted) {
@@ -46,17 +47,18 @@ if(isMounted) {
     }, 1500)
 }
         return()=> {
-            isMounted = false
+           setIsMounted(false)
 
         }
     },[person])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
+        await setIsMounted(true)
         addNewPerson()
         setSubmit(true);
-        isMounted=true
+
         setTimeout(()=>addPerson(person),100)
         setFirstName('')
         setLastName('')
