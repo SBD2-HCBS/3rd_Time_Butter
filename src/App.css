@@ -45,7 +45,7 @@
   background-color:green;
   color: white;
   font-weight:bold;
-  font-size:60px;
+  font-size:20px;
 }
 input{
   display: flex;
@@ -54,12 +54,14 @@ input{
   width:100%;
 }
  button {
-  width:100%;
+  width:250px;
   padding:10px;
   margin:0;
+     height:75px;
   box-sizing:border-box;
    font-weight:bold;
-   background-color:coral
+   background-color:coral;
+     border-radius:10%;
 }
  #form{
     display: flex;
