@@ -33,10 +33,11 @@ const AddUser=(props)=>{
             age: age,
             hobbies:hobbies
         })
+
     }
     let isMounted=true;
-    useEffect(()=>{
 
+    useEffect(()=>{
 if(isMounted) {
 
     dispatch({
@@ -48,9 +49,12 @@ if(isMounted) {
         setSubmit(false)
     }, 1500)
 }
-        return()=> isMounted=false
+        return()=> {
+            isMounted = false
 
+        }
     },[person])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,16 +62,16 @@ if(isMounted) {
         setSubmit(true);
         isMounted=true
         setTimeout(()=>addPerson(person),100)
+
+
     }
+
+
 
     return(
         <div className="App-header outSide " >
         <form onSubmit={handleSubmit}>
-
-                    <span ><h2>Fill Out Form</h2></span>
-
-
-
+                    <span id='spans' ><h2>Fill Out Form</h2></span>
 <row>
     <div id='form' >
             <input
@@ -76,6 +80,7 @@ if(isMounted) {
                 placeholder="First Name"
                 onChange={(e)=>setFirstName(e.target.value)}
                 required
+
             />
             <input
                 type='text'
@@ -100,16 +105,12 @@ if(isMounted) {
             />
     </div>
 </row>
-
             <button variant={san}>Submit Form</button>
-
         </form>
             <Link to='/viewContainer'  >
             <button>See List</button>
             </Link>
-
             {submit?(<div className='green'><h2>You Have Successfully added a Person!</h2></div>):null}
-
         </div>
     )
 }

@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link  } from "react-router-dom";
 
-
 const ViewContainer = (props) => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
@@ -30,7 +29,6 @@ dispatch({
     payload:id
 })
     }
-
 
     const deletePerson = (id) =>{
     console.log(id)

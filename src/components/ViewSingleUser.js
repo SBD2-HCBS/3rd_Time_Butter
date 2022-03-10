@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch } from 'react-redux'
 import {useLocation,Link} from 'react-router-dom'
-import {Col, Row} from 'reactstrap'
+
 const ViewSingleUser=(props)=>{
     const dispatch = useDispatch()
     const location = useLocation()
@@ -12,7 +12,6 @@ const ViewSingleUser=(props)=>{
             payload:id
         })
     }
-    console.log(from)
     return(
         <div className="App-header outSide ">
 
