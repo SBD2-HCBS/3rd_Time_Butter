@@ -23,9 +23,9 @@ useEffect(()=>{
 
 },[person])
 
-const viewPerson=(id)=>{
-    dispatch(viewPersonFunction(id))
-}
+// const viewPerson=(id)=>{
+//     dispatch(viewPersonFunction(id))
+// }
 
     const deletePerson = (id) =>{
 console.log(id)
@@ -48,8 +48,8 @@ console.log(id)
 
                         <button onClick={()=>deletePerson(person.id)} >Delete</button>
 
-                        <Link to='/viewSingleUser' state={{from:person}}>
-                        <button onClick={() => viewPerson(person.id)}>View Person</button>
+                        <Link to='/viewSingleUser' state={{from:index}}>
+                        <button >View Person</button>
 
                         </Link>
 

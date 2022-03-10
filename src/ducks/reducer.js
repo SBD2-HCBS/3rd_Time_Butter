@@ -37,6 +37,7 @@ const founder = (id, arr)=>{
 
 const filtered = (id,arr)=>{
     let newArray= arr.filter(item=>item.id!==id)
+
     return  newArray;
 }
 
@@ -67,7 +68,6 @@ const filtered = (id,arr)=>{
                     let found = founder(action.payload,state.person)
                 // let found = state.find(person => person.id === action.payload)
                 return {
-                    ...state,
                     person:[found]
                 }
             default:
