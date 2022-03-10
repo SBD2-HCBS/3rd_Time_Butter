@@ -61,15 +61,16 @@ if(isMounted) {
     }
 
     return(
-        <React.Fragment>
+        <div className="App-header outSide " >
         <form onSubmit={handleSubmit}>
             <Col>
                 <Row>
-                    <span><h2>Fill Out Form</h2></span>
+                    <span ><h2>Fill Out Form</h2></span>
                 </Row>
 
 
 <Row>
+    <div id='form' >
             <input
                 type='text'
                 name={firstName}
@@ -98,16 +99,19 @@ if(isMounted) {
                 onChange={(e)=>setHobbies(e.target.value)}
                 required
             />
+    </div>
 </Row>
+
             <Button variant={san}>Submit Form</Button>
             </Col>
         </form>
             <Link to='/viewContainer'  >
             <Button>See List</Button>
             </Link>
+
             {submit?(<div className='green'><h2>Congrats</h2></div>):null}
 
-        </React.Fragment>
+        </div>
     )
 }
 
