@@ -44,7 +44,7 @@ if(isMounted) {
         type: 'ADD_PERSON',
         payload: person
     })
-    setSubmit(true);
+
     setTimeout(() => {
         setSubmit(false)
     }, 1500)
@@ -56,6 +56,7 @@ if(isMounted) {
     const handleSubmit = (e) => {
         e.preventDefault();
         addNewPerson()
+        setSubmit(true);
         isMounted=true
         setTimeout(()=>addPerson(person),100)
     }
@@ -109,7 +110,7 @@ if(isMounted) {
             <Button>See List</Button>
             </Link>
 
-            {submit?(<div className='green'><h2>Congrats</h2></div>):null}
+            {submit?(<div className='green'><h2>You Have Successfully added a Person!</h2></div>):null}
 
         </div>
     )

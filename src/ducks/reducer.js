@@ -56,10 +56,7 @@ const filtered = (id,arr)=>{
 
                     person:[...filteredList]
                 }
-                return {
-                    ...state,
-                    person: state.person.filter(person => person.id !== action.payload)
-                }
+
             case 'VIEW_PERSON':
                // let found = state.person.length<2?null:state.person.find(person => person.id === action.payload)
                     let found = founder(action.payload,state.person)
