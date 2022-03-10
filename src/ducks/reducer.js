@@ -1,5 +1,5 @@
 const initialState={
-    person:[]
+    person:[{id:0}]
 }
 
 
@@ -31,7 +31,7 @@ const founder = (id, arr)=>{
 }
 
 const filtered = (id,arr)=>{
-    let newArray= arr.filter(item=>item.id!==id)
+    let newArray= arr.filter(item=>item.id?item.id!==id:item.id=1)
     return  newArray;
 }
 

@@ -1,8 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
-import ViewContainer from './ViewContainer'
-import {Button, Col, Row} from 'reactstrap';
+ import {dispatchInfo} from "../ducks/actions";
 import '../App.css';
 import {Link} from "react-router-dom";
 
@@ -19,10 +18,10 @@ const AddUser=(props)=>{
         [hobbies,setHobbies] = useState(''),
         [person,setPerson] = useState({
             id,
-            firstName:'',
-            lastName:'',
+            firstName,
+            lastName,
             age,
-            hobbies:''
+            hobbies
         });
 
     const addNewPerson = () => {
@@ -40,10 +39,7 @@ const AddUser=(props)=>{
     useEffect(()=>{
 if(isMounted) {
 
-    dispatch({
-        type: 'ADD_PERSON',
-        payload: person
-    })
+    dispatch(dispatchInfo("ADD_PERSON",person))
 
     setTimeout(() => {
         setSubmit(false)
