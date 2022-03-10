@@ -14,13 +14,13 @@ const ViewSingleUser=(props)=>{
     }
     console.log(from)
     return(
-        <div>
-            <Col>
-                <Row><h2>Full Name: {from.firstName} {from.lastName}</h2></Row>
-                <Row><h2>Age: {from.age}</h2></Row>
-                <Row><h3>Hobbies: {from.hobbies}</h3></Row>
+        <div className="App-header outSide ">
+
+                <row><h2>Full Name: {from.firstName} {from.lastName}</h2></row>
+                <row><h2>Age: {from.age}</h2></row>
+                <row><h3>Hobbies: {from.hobbies}</h3></row>
                 <Link to='/addUser'>Return Back to Form</Link>
-            </Col>
+
         </div>
     )
 }

@@ -45,7 +45,7 @@ dispatch({
     }
 
     return(
-        <div>
+        <div  className="App-header outSide ">
            <h3>
                 {people.map((person, index) => (
 

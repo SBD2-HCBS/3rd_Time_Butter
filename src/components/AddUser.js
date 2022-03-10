@@ -38,7 +38,6 @@ const AddUser=(props)=>{
     useEffect(()=>{
 
 if(isMounted) {
-    console.log(props.person + "hello")
 
     dispatch({
         type: 'ADD_PERSON',
@@ -49,7 +48,7 @@ if(isMounted) {
         setSubmit(false)
     }, 1500)
 }
-        return()=>  isMounted=false
+        return()=> isMounted=false
 
     },[person])
 
@@ -64,13 +63,12 @@ if(isMounted) {
     return(
         <div className="App-header outSide " >
         <form onSubmit={handleSubmit}>
-            <Col>
-                <Row>
+
                     <span ><h2>Fill Out Form</h2></span>
-                </Row>
 
 
-<Row>
+
+<row>
     <div id='form' >
             <input
                 type='text'
@@ -101,13 +99,13 @@ if(isMounted) {
                 required
             />
     </div>
-</Row>
+</row>
 
-            <Button variant={san}>Submit Form</Button>
-            </Col>
+            <button variant={san}>Submit Form</button>
+
         </form>
             <Link to='/viewContainer'  >
-            <Button>See List</Button>
+            <button>See List</button>
             </Link>
 
             {submit?(<div className='green'><h2>You Have Successfully added a Person!</h2></div>):null}
