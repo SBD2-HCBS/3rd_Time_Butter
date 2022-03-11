@@ -6,8 +6,6 @@ const ViewSingleUser=()=>{
     const location = useLocation()
     const {from} = location.state
 const person = useSelector(state=>state.person[from])
-console.log(from,'from')
-    console.log(person,'who')
     return(
         person.length!==0 ?
     <div className="App-header outSide ">
