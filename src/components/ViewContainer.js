@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link  } from "react-router-dom";
-import {viewPersonFunction,deleteFunction} from "../ducks/actions";
+import {deleteFunction} from "../ducks/actions";
 
 const ViewContainer = () => {
     const [people, runningThruPeople] = React.useState([])
@@ -23,19 +23,15 @@ useEffect(()=>{
 
 },[person])
 
-// const viewPerson=(id)=>{
-//     dispatch(viewPersonFunction(id))
-// }
-
     const deletePerson = (id) =>{
-console.log(id)
-       // if(id!==people.id)people.id=id;
+
         if (person.length >0) {
             dispatch( deleteFunction(id))
         }else {
             window.alert('You cannot delete an empty list')
         }
     }
+
 
     return(
         <div  className="App-header outSide ">
@@ -54,7 +50,7 @@ console.log(id)
                         </Link>
 
                     </li>
-                )):null}
+                )):<div><b>Just Waiting On you to add  to the list</b></div>}
             </h3>
             {people.id === 0 || people.length === 0 ?
                 <Link to='/addUser'>

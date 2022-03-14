@@ -36,9 +36,11 @@ const founder = (id, arr)=>{
 }
 
 const filtered = (id,arr)=>{
-    let newArray= arr.filter(item=>item.id!==id)
+    let clone = JSON.parse(JSON.stringify(arr))
+    // let newArray= arr.filter(item=>item.id!==id)
+ if (id>-1) clone.splice(id,1);
 
-    return  newArray;
+    return  clone;
 }
 
   const reducer = (state = initialState, action) => {
@@ -57,7 +59,6 @@ const filtered = (id,arr)=>{
                 }
             case 'DELETE_PERSON':
                 let filteredList = filtered(action.payload,state.person)
-                console.log(filteredList)
                 return {
 
                     person:[...filteredList]

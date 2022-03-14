@@ -4,10 +4,14 @@ import {useSelector}  from "react-redux";
 
 const ViewSingleUser=()=>{
     const location = useLocation()
-    const {from} = location.state
+    const {from} = location ==!null?location.state:{}
 const person = useSelector(state=>state.person[from])
+
+    const isObjectEmpty=(obj)=>{
+        return Object.keys(obj).length === 0
+    }
     return(
-        person.length!==0 ?
+       !isObjectEmpty(person) ?
     <div className="App-header outSide ">
 
         <h2>Full Name: {person.firstName} {person.lastName}</h2>
