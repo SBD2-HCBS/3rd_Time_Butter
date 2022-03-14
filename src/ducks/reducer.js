@@ -23,10 +23,16 @@ export function viewPerson(id){
         id
     }
 }
+const fixStr=(str)=>{
+    let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
 
+    return firstLetter.replace(/\s/g,"")
+}
 const addPersonObj=(person)=>{
     let clone = JSON.parse(JSON.stringify(person))
     clone.id=initialState.id
+    clone.firstName = fixStr(person.firstName)
+    clone.lastName = fixStr(person.lastName)
     return clone
 }
 const founder = (id, arr)=>{
