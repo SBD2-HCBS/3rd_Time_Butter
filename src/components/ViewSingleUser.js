@@ -7,7 +7,7 @@ const ViewSingleUser=()=>{
     const {from} = location ==!null?location.state:{}
 const person = useSelector(state=>state.person[from])
 
-    const isObjectEmpty=(obj)=>{
+    const isObjectEmpty=(obj={})=>{
         return Object.keys(obj).length === 0
     }
     return(

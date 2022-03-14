@@ -4,7 +4,14 @@ import {addPerson} from'../ducks/reducer'
  import {dispatchInfo} from "../ducks/actions";
 import '../App.css';
 import {Link} from "react-router-dom";
+import _ from "lodash";
 
+
+const validateForm = errors => {
+    let valid = true;
+    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
+    return valid;
+};
 
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person.id);
@@ -24,12 +31,17 @@ const AddUser=(props)=>{
         }),
         [isMounted,setIsMounted] = useState(false);
 
+    const fixStr=(str)=>{
+        let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
+        return firstLetter.replace(/\s/g,"")
+    }
+
     const addNewPerson = async() => {
         await setID(statePerson)
        await setPerson({
           id:id,
-            firstName: firstName,
-            lastName: lastName,
+            firstName: fixStr(firstName),
+            lastName: fixStr(lastName),
             age: age,
             hobbies:hobbies
         })
@@ -52,9 +64,32 @@ if(isMounted) {
     },[person])
 
 
+
+    const handleFirstNameChange=(e)=>{
+        e.preventDefault();
+     // const {firstName, lastName, age, hobbies} = e.target;
+        setFirstName(e.target.value)
+
+
+    },
+        handleLastNameChange=(e)=>{
+        e.preventDefault();
+        setLastName(e.target.value)
+        },
+        handleAgeChange=(e)=>{
+        e.preventDefault();
+        setAge(e.target.value)
+    },
+        handleHobbiesChange=(e)=>{
+        e.preventDefault();
+        setHobbies(e.target.value)
+        }
+
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         await setIsMounted(true)
+
        await addNewPerson()
         setSubmit(true);
              addPerson(person)
@@ -78,9 +113,8 @@ if(isMounted) {
                 type='text'
                 name={firstName}
                 placeholder="First Name"
-                onChange={(e)=>setFirstName(e.target.value)}
+                onChange={handleFirstNameChange}
                 required
-
                 value={firstName}
 
             />
@@ -88,7 +122,7 @@ if(isMounted) {
                 type='text'
                 name={lastName}
                 placeholder="last Name"
-                onChange={(e)=>setLastName(e.target.value)}
+                onChange={handleLastNameChange}
                 required
                 value={lastName}
             />
@@ -96,7 +130,7 @@ if(isMounted) {
                 type={'number'}
                 name={age}
                 placeholder="age"
-                onChange={(e)=>setAge(e.target.value)}
+                onChange={handleAgeChange}
                 required
                 value={age}
             />
@@ -104,7 +138,7 @@ if(isMounted) {
                 type={'text'}
                 name={hobbies}
                 placeholder="Hobbies"
-                onChange={(e)=>setHobbies(e.target.value)}
+                onChange={handleHobbiesChange}
                 required
                 value={hobbies}
             />

@@ -1,12 +1,23 @@
 import React from 'react';
-import {render,screen} from'../setupTests'
+ import {render} from'../setupTests'
+import {screen} from '@testing-library/react';
 import ViewSingleUser from './ViewSingleUser';
 import userEvent from "@testing-library/user-event";
 import {createMemoryHistory} from 'history'
-import {MemoryRouter} from 'react-router-dom'
+import {MemoryRouter, useLocation} from 'react-router-dom'
 import '@testing-library/jest-dom'
+import {Provider} from "react-redux";
+import store from '../ducks/store'
 
-jest.mock()
+jest.mock("react-router-dom",()=>({
+    ...jest.requireActual("react-router-dom"),
+    useLocation:() => ({
+        pathname: 'localhost:3000/viewSingleUser'
+    }),
+    useSelector:() => ({
+        state: state => state.person
+    })
+}))
 describe('View Single User Component', () => {
     let person = {
         firstName: 'Jeff',
@@ -25,8 +36,9 @@ describe('View Single User Component', () => {
 
     }
     test('should not render if person length is zero',()=>{
-        render(<ViewSingleUser from={location} path='/viewSingleUser' person={person} location={loco} />)
-        expect(screen.getByRole(<h3/>)).toHaveTextContent("Hobbies: ")
+        render(<Provider store={store}><ViewSingleUser from={location} path='/viewSingleUser' location={loco}/></Provider>)
+        expect(screen.getByText('The List is empty')).toBeInTheDocument();
+
     })
 
 
