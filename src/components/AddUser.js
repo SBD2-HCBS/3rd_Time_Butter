@@ -33,16 +33,31 @@ const AddUser=(props)=>{
 
     const fixStr=(str)=>{
         let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
+        if(firstLetter.length > 50) {
+            window.alert(`Max length is 50 characters; will only save the first 50 characters + :${firstLetter}`)
+           firstLetter = firstLetter.slice(49)
+           // return firstLetter.replace(/\s/g,"")
+        }
         return firstLetter.replace(/\s/g,"")
-    }
+    },
+        fixAge=(age)=>{
+        if(age>110) {
+            window.alert(`Max age is 110 you put ${age} resetting to max age`)
+            age = 110
+        }
+        return age
+        }
+
+
 
     const addNewPerson = async() => {
         await setID(statePerson)
+        if(firstName==null || lastName==null) return
        await setPerson({
           id:id,
             firstName: fixStr(firstName),
             lastName: fixStr(lastName),
-            age: age,
+            age: fixAge(age),
             hobbies:hobbies
         })
 
