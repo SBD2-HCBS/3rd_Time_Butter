@@ -4,7 +4,7 @@ import {useSelector}  from "react-redux";
 
 const ViewSingleUser=()=>{
     const location = useLocation()
-    const {from} = location ==!null?location.state:{}
+    const {from} = location.state
 const person = useSelector(state=>state.person[from])
 
     const isObjectEmpty=(obj={})=>{

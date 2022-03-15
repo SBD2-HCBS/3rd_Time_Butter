@@ -9,7 +9,7 @@ const ViewContainer = () => {
     const person = useSelector(state=>state.person);
 const [isMounted,setIsMounted] = useState(true)
 const id = useSelector(state=>state.person.id)
-
+console.log(person)
 useEffect(()=>{
 
   if(isMounted) {
@@ -38,13 +38,13 @@ useEffect(()=>{
            <h3>
                 {people.length !== 0?people.map((person={}, index) => (
 
-                    <li key={index === index ? index += 1 : index}>Full Name: {person.firstName} {person.lastName}
+                    <li key={index}>Full Name: {person.firstName} {person.lastName}
                         <p>AGE: {person.age}</p>
                         <p>{person.hobbies}</p>
 
                         <button onClick={()=>deletePerson(person.id)} >Delete</button>
 
-                        <Link to='/viewSingleUser' state={{from:index}}>
+                        <Link to='/viewSingleUser' state={{from:person.id}}>
                         <button >View Person</button>
 
                         </Link>
