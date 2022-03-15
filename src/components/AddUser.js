@@ -9,6 +9,7 @@ const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person.id);
     const [submit,setSubmit] = useState(false)
     const dispatch = useDispatch()
+    const hobbyRef=React.useRef()
 
     const [firstName,setFirstName] = useState(''),
         [lastName,setLastName] = useState(''),
@@ -38,20 +39,29 @@ const AddUser=(props)=>{
             age = 110
         }
         return age
+        },
+        fixHobbies=(str)=>{
+
         }
 
 
 
     const addNewPerson = async() => {
-        await setID(statePerson)
-       await setPerson({
-          id:id,
-            firstName: fixStr(firstName),
-            lastName: fixStr(lastName),
-            age: fixAge(age),
-            hobbies:hobbies
-        })
+       if (hobbies.length<5){
+           window.alert('Hobbies must be at least 5 characters long')
+           hobbyRef.current.focus();
+           return;
 
+       }if(hobbies.length>4) {
+           await setID(statePerson)
+           await setPerson({
+               id: id,
+               firstName: fixStr(firstName),
+               lastName: fixStr(lastName),
+               age: fixAge(age),
+               hobbies: hobbies
+           })
+       }
     }
 
 
@@ -95,19 +105,26 @@ if(isMounted) {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await setIsMounted(true)
+        if (hobbies.length < 5) {
+            window.alert('Hobbies must be at least 5 characters long')
+            hobbyRef.current.focus();
+            return;
 
-       await addNewPerson()
-        setSubmit(true);
-             addPerson(person)
+        }
+        if (hobbies.length > 4) {
+            await setIsMounted(true)
 
-        setFirstName('')
-        setLastName('')
-        setAge('')
-        setHobbies('')
+            await addNewPerson()
+            setSubmit(true);
+            addPerson(person)
 
+            setFirstName('')
+            setLastName('')
+            setAge('')
+            setHobbies('')
+
+        }
     }
-
 
 
     return(
@@ -148,6 +165,7 @@ if(isMounted) {
                 onChange={handleHobbiesChange}
                 required
                 value={hobbies}
+                ref={hobbyRef}
             />
     </div>
 
