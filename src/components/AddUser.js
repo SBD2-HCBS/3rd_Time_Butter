@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
- import {dispatchInfo} from "../ducks/actions";
+ import {dispatchInfo,addPersonFunction, initializedFunction} from "../ducks/actions";
 import '../App.css';
 import {Link} from "react-router-dom";
 
@@ -56,8 +56,9 @@ const AddUser=(props)=>{
 
 
     useEffect(()=>{
+        dispatch(initializedFunction())
 if(isMounted) {
-    dispatch(dispatchInfo("ADD_PERSON",person))
+    dispatch(addPersonFunction(person))
     setTimeout(() => {
         setSubmit(false)
     }, 1500)

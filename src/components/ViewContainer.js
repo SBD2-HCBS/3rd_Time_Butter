@@ -25,7 +25,7 @@ useEffect(()=>{
 
     const deletePerson = (id) =>{
 
-        if (person.length >0) {
+        if (person.length !==0) {
             dispatch( deleteFunction(id))
         }else {
             window.alert('You cannot delete an empty list')
@@ -42,7 +42,7 @@ useEffect(()=>{
                         <p>AGE: {person.age}</p>
                         <p>{person.hobbies}</p>
 
-                        <button onClick={()=>deletePerson(index)} >Delete</button>
+                        <button onClick={()=>deletePerson(person.id)} >Delete</button>
 
                         <Link to='/viewSingleUser' state={{from:person.id}}>
                         <button >View Person</button>

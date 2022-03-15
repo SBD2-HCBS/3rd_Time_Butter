@@ -14,3 +14,10 @@ export const viewPersonFunction=(id)=>({
     type:"VIEW_PERSON",
     payload:id
 })
+ export const addPersonFunction=(person)=>({
+     type:"ADD_PERSON",
+     payload:person
+ })
+ export const initializedFunction=()=>({
+     type:"INITIALIZED"
+ })

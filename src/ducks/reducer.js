@@ -7,7 +7,7 @@ const initialState={
 const ADD_PERSON='ADD_PERSON',
     DELETE_PERSON='DELETE_PERSON',
     VIEW_PERSON='VIEW_PERSON',
-    INITALIZED='INITALIZED'
+    INITIALIZED="INITIALIZED"
 
 
 export function addPerson(person) {
@@ -45,14 +45,14 @@ const filtered = (id,arr)=>{
     let clone = JSON.parse(JSON.stringify(arr))
     let newArray;
     //clone.splice(id,1);
- if (id>-1) newArray=clone.filter(item=>item.id!==id)
+ if (id!==-1) newArray=clone.filter((item,index)=>item.id!==id)
 
     return  newArray;
 }
 
   const reducer = (state = initialState, action) => {
         switch (action.type) {
-            case 'INITALIZED':
+            case 'INITIALIZED':
                 return{
                     ...state
                 }
