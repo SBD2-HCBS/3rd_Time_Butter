@@ -2,7 +2,7 @@ import {default as reducer,ADD_PERSON, DELETE_PERSON, VIEW_PERSON, INITALIZED} f
 
 
 const newState={
-    person:[{firstName: 'Jim'}]
+    person:{id:0,firstName: 'Jim', lastName: 'Smith', age:4, hobbies:'Everythign under the sun'}
 }
 
 describe("testing the reducer", () => {
@@ -11,8 +11,30 @@ describe("testing the reducer", () => {
             const actual = reducer(undefined,{
                 type:INITALIZED
             })
-            expect(actual).toEqual({person:[]})
+            expect(actual).toEqual({id:0,person:[]})
         })
-        test('Should update the current state')
+        test('Should update the current state',()=>{
+            const actual = reducer(newState,{
+                type:ADD_PERSON,
+                payload:newState
+            })
+            expect(actual).toEqual({
+                    person: {
+                        id:0,
+                        age: 4,
+                        lastName: 'Smith',
+                        firstName: 'Jim',
+                        hobbies: 'Everythign under the sun',
+                    }
+                }
+            )
+        })
+        // test('should remove a person from list', () => {
+        //     const actual = reducer(newState,{
+        //         type:'DELETE_PERSON',
+        //         payload: ({newState,id:0})
+        //     })
+        //     expect(actual).toEqual({})
+        // })
     })
 })
