@@ -42,7 +42,7 @@ useEffect(()=>{
                         <p>AGE: {person.age}</p>
                         <p>{person.hobbies}</p>
 
-                        <button onClick={()=>deletePerson(person.id)} >Delete</button>
+                        <button onClick={()=>deletePerson(index)} >Delete</button>
 
                         <Link to='/viewSingleUser' state={{from:person.id}}>
                         <button >View Person</button>
