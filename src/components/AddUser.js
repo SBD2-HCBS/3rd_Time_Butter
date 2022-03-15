@@ -59,11 +59,14 @@ const AddUser=(props)=>{
         dispatch(initializedFunction())
 if(isMounted) {
     dispatch(addPersonFunction(person))
-    setTimeout(() => {
-        setSubmit(false)
-    }, 1500)
+
 }
-        return async()=> await setIsMounted(false)
+        return async()=> {
+    await setIsMounted(false)
+            setTimeout(() => {
+                setSubmit(false)
+            }, 1500)
+        }
 
     },[person])
 
