@@ -38,7 +38,7 @@ const AddUser=(props)=>{
            firstLetter = firstLetter.slice(49)
            // return firstLetter.replace(/\s/g,"")
         }
-        return firstLetter.replace(/\s/g,"")
+        return firstLetter.replace(/\s/g,"_")
     },
         fixAge=(age)=>{
         if(age>110) {
@@ -52,7 +52,6 @@ const AddUser=(props)=>{
 
     const addNewPerson = async() => {
         await setID(statePerson)
-        if(firstName==null || lastName==null) return
        await setPerson({
           id:id,
             firstName: fixStr(firstName),
@@ -72,10 +71,8 @@ if(isMounted) {
         setSubmit(false)
     }, 1500)
 }
-        return async()=> {
-          await setIsMounted(false)
+        return async()=>await setIsMounted(false)
 
-        }
     },[person])
 
 
