@@ -1,17 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {addPerson} from'../ducks/reducer'
  import {dispatchInfo} from "../ducks/actions";
 import '../App.css';
 import {Link} from "react-router-dom";
-import _ from "lodash";
-
-
-const validateForm = errors => {
-    let valid = true;
-    Object.values(errors).forEach(val => val.length > 0 && (valid = false));
-    return valid;
-};
 
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person.id);
@@ -64,14 +56,13 @@ const AddUser=(props)=>{
 
 
     useEffect(()=>{
-
 if(isMounted) {
     dispatch(dispatchInfo("ADD_PERSON",person))
     setTimeout(() => {
         setSubmit(false)
     }, 1500)
 }
-        return async()=>await setIsMounted(false)
+        return async()=> await setIsMounted(false)
 
     },[person])
 

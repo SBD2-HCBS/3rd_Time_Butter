@@ -8,7 +8,8 @@ const ViewContainer = () => {
     const dispatch = useDispatch()
     const person = useSelector(state=>state.person);
 const [isMounted,setIsMounted] = useState(true)
-const id = useSelector(state=>state.person.id)
+
+
 useEffect(()=>{
 
   if(isMounted) {
