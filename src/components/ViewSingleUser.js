@@ -18,6 +18,10 @@ const person = useSelector(state=>state.person[from])
         <h2>Age: {person.age}</h2>
         <h3>Hobbies: {person.hobbies}</h3>
         <Link to='/addUser'>Return Back to Form</Link>
+        <br></br>
+        <Link to='/viewContainer'>
+            <button>View List</button>
+        </Link>
 
     </div>:<div>
             <h3>The List is Empty</h3>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {Link  } from "react-router-dom";
 import {deleteFunction} from "../ducks/actions";
-
+import '../App.css'
 const ViewContainer = () => {
     const [people, runningThruPeople] = React.useState([])
     const dispatch = useDispatch()
@@ -41,14 +41,15 @@ useEffect(()=>{
                     <li key={index}>Full Name: {person.firstName} {person.lastName}
                         <p>AGE: {person.age}</p>
                         <p>Hobbies: {person.hobbies}</p>
-
+                        <div className="button-group">
                         <button onClick={()=>deletePerson(person.id)} >Delete</button>
-
                         <Link to='/viewSingleUser' state={{from:person.id}}>
                         <button >View Person</button>
-
                         </Link>
-
+                        <Link to='/addUser'>
+                        <button>Return to Form</button>
+                        </Link>
+                        </div>
                     </li>
                 )):<div><b>Just Waiting On you to add  to the list</b></div>}
             </h3>
