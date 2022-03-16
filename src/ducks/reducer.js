@@ -45,7 +45,7 @@ const filtered = (id,arr)=>{
     let clone = JSON.parse(JSON.stringify(arr))
     let newArray;
     //clone.splice(id,1);
- if (id!==-1) newArray=clone.filter((item,index)=>item.id!==id)
+ if (id!==-1)  newArray=clone.filter((item,index)=>item.id!==id)
 
     return  newArray;
 }
