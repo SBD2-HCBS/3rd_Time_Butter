@@ -14,7 +14,7 @@ const person = useSelector(state=>state.person[from])
        !isObjectEmpty(person) ?
     <div className="App-header outSide ">
 
-        <h2>Full Name: {person.firstName},+''+ {person.lastName}</h2>
+        <h2>Full Name: {person.firstName} {person.lastName}</h2>
         <h2>Age: {person.age}</h2>
         <h3>Hobbies: {person.hobbies}</h3>
         <Link to='/addUser'>Return Back to Form</Link>

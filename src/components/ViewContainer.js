@@ -40,7 +40,7 @@ useEffect(()=>{
 
                     <li key={index}>Full Name: {person.firstName} {person.lastName}
                         <p>AGE: {person.age}</p>
-                        <p>{person.hobbies}</p>
+                        <p>Hobbies: {person.hobbies}</p>
 
                         <button onClick={()=>deletePerson(person.id)} >Delete</button>
 

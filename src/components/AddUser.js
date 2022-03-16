@@ -8,8 +8,9 @@ import {Link} from "react-router-dom";
 const AddUser=(props)=>{
     const statePerson = useSelector(state=>state.person.id);
     const [submit,setSubmit] = useState(false)
-    const dispatch = useDispatch()
-    const hobbyRef=React.useRef()
+    const dispatch = useDispatch();
+    const hobbyRef=React.useRef(),
+        firstNameRef = React.useRef();
 
     const [firstName,setFirstName] = useState(''),
         [lastName,setLastName] = useState(''),
@@ -64,7 +65,9 @@ const AddUser=(props)=>{
        }
     }
 
-
+useEffect(()=>{
+    firstNameRef.current.focus()
+},[])
     useEffect(()=>{
         dispatch(initializedFunction())
 if(isMounted) {
@@ -128,9 +131,9 @@ if(isMounted) {
 
 
     return(
-        <div className="App-header outSide " >
+        <div className="App-header outSide" >
         <form onSubmit={handleSubmit}>
-                    <span id='spans' ><h2>Fill Out Form</h2></span>
+                    <span id='spans'><h2>Fill Out Form</h2></span>
 
     <div id='form' >
             <input
@@ -140,6 +143,7 @@ if(isMounted) {
                 onChange={handleFirstNameChange}
                 required
                 value={firstName}
+                ref={firstNameRef}
 
             />
             <input
