@@ -2,11 +2,15 @@ import React from 'react'
 import {useLocation,Link} from 'react-router-dom'
 import {useSelector}  from "react-redux";
 import {connect} from 'react-redux'
+
 const ViewSingleUser=(props)=>{
     const location = useLocation()
     const {from} = location.state
 //const person = useSelector(state=>state.person[from])
-const people=React.useRef(props.person[from])
+    console.log(from)
+    console.log(from.people.people )
+const people=React.useRef(from.people.people.find(item=>item.id===from.person))
+    console.log(people)
     const isObjectEmpty=(obj={})=>{
         return Object.keys(obj).length === 0
     }
@@ -22,7 +26,13 @@ const people=React.useRef(props.person[from])
         <Link to='/viewContainer'>
             <button>View List</button>
         </Link>
+        <Link to='/editUser' state={{from:{
+            current:people.current,
+                people:from.people.people
 
+        }}} >
+            <button>Edit Person</button>
+        </Link>
     </div>:<div>
             <h3>The List is Empty</h3>
                 <Link to='/addUser'>Return Back to Form</Link>

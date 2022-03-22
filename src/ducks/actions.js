@@ -21,3 +21,8 @@ export const viewPersonFunction=(id)=>({
  export const initializedFunction=()=>({
      type:"INITIALIZED"
  })
+
+ export const updatePersonFunction=(person)=>({
+     type:'UPDATE_PERSON',
+     payload:person
+ })

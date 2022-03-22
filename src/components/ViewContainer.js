@@ -43,7 +43,10 @@ useEffect(()=>{
                         <p>Hobbies: {person.hobbies}</p>
                         <div className="button-group">
                         <button onClick={()=>deletePerson(person.id)} >Delete</button>
-                        <Link to='/viewSingleUser' state={{from:person.id}}>
+                        <Link to='/viewSingleUser' state={{from: {
+                          person:person.id,
+                                people:{people}
+                        }}}>
                         <button >View Person</button>
                         </Link>
                         <Link to='/addUser'>

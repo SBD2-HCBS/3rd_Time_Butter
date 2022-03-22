@@ -41,6 +41,23 @@ const founder = (id, arr)=>{
     return newArray
 }
 
+const replaceItemsById =async(newArray)=>{
+    let newArray33= await JSON.parse(JSON.stringify(newArray))
+    let originalArray = await JSON.parse(JSON.stringify(initialState.person))
+    // const id = newArray33.id
+    console.log(initialState )
+    console.log(newArray33,'33')
+    const newItems= originalArray.findIndex(p=>p.id===newArray33.id)
+    console.log(newItems)
+
+    let rest = await originalArray.slice(0,newItems)
+    rest.push(newArray)
+
+    console.log(rest,'rest')
+    //console.log(newObject)
+    return rest
+
+}
 const filtered = (id,arr)=>{
     let clone = JSON.parse(JSON.stringify(arr))
     let newArray;
@@ -69,6 +86,13 @@ const filtered = (id,arr)=>{
                 return {
 
                     person:[...filteredList]
+                }
+            case 'UPDATE_PERSON':
+                let answer = replaceItemsById(action.payload)
+                console.log(answer)
+                return{
+                    ...state,
+                    person:[answer]
                 }
 
             case 'VIEW_PERSON':
