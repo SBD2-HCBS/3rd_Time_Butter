@@ -75,7 +75,7 @@ const filtered = (id,arr)=>{
                 }
             case 'ADD_PERSON':
                 let people = addPersonObj(action.payload)
-                initialState.id=++initialState.id
+                initialState.id=initialState.id++
                 return {
                     ...state,
                     id:initialState.id,

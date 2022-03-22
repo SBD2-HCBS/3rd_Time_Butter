@@ -17,9 +17,9 @@ const Edit=()=>{
   //   console.log(from.current)
     const [firstName,setFirstName] = useState(''),
 
-        [lastName,setLastName] = useState(from.current.lastName),
-        [age,setAge] = useState(parseInt(from.current.age)),
-        [hobbies,setHobbies] = useState(from.current.hobbies),
+        [lastName,setLastName] = useState(''),
+        [age,setAge] = useState(0),
+        [hobbies,setHobbies] = useState(''),
         [id,setID] = useState(from.current.id),
         [person,setPerson] = useState({
             id,
@@ -51,32 +51,28 @@ const Edit=()=>{
 
         }
 
-    const replaceById =(id,arr,person)=>{
-        let newArray = arr
-        const index=newArray.findIndex(p=>p.id===id)
-        console.log(index)
-        newArray[index].name ='juju'
-        console.log(newArray)
-        return newArray
-    }
+    // const replaceById =(id,arr,person)=>{
+    //     let newArray = arr
+    //     const index=newArray.findIndex(p=>p.id===id)
+    //     console.log(index)
+    //     newArray[index].name ='juju'
+    //     console.log(newArray)
+    //     return newArray
+    // }
 
    function replaceArrayById(originalArray,newArray){
-       console.log(originalArray)
-        console.log(newArray)
+       // console.log(originalArray)
+       //  console.log(newArray)
         let newArray33=[originalArray].slice();
-
         const id =   [newArray].find(o=>o.id)
-        console.log(id)
+        // console.log(id)
         const newItems=   [newArray33].findIndex(p=>p.id===id)
-        console.log(newItems)
-
+        // console.log(newItems)
         let rest = [newArray33].slice(0,newItems)
         rest.push(newArray)
-
-        console.log(newArray33)
+        // console.log(newArray33)
         //console.log(newObject)
         return rest
-
     }
     let finalArray;
     let newPerson;
@@ -152,7 +148,7 @@ const Edit=()=>{
     useEffect(()=>{
         if(isMounted) {
             console.log('hit')
-           // dispatch(updatePersonFunction(person))
+         dispatch(updatePersonFunction(person))
 
         }
         return async()=> {
@@ -169,6 +165,10 @@ const Edit=()=>{
             <form onSubmit={handleSubmit}>
                 <span id='spans'><h2>Update Your Form</h2></span>
                 <fieldset className="container">
+                    <span><h2>Full Name: {from.current.firstName} {from.current.lastName}</h2>
+        <h2>Age: {from.current.age}</h2>
+        <h3>Hobbies: {from.current.hobbies}</h3>
+                    </span>
                     <div id='form' >
                         <input
                             type='text'
