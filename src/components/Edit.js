@@ -15,18 +15,21 @@ const Edit=()=>{
         firstNameRef = React.useRef();
   // console.log(from.people,'edit')
   //   console.log(from.current)
-    const [firstName,setFirstName] = useState(from.current.firstName),
+    const [firstName,setFirstName] = useState(''),
+
         [lastName,setLastName] = useState(from.current.lastName),
         [age,setAge] = useState(parseInt(from.current.age)),
         [hobbies,setHobbies] = useState(from.current.hobbies),
         [id,setID] = useState(from.current.id),
         [person,setPerson] = useState({
+            id,
             firstName,
             lastName,
             age,
             hobbies
         }),
-        [isMounted,setIsMounted] = useState(false);
+        [isMounted,setIsMounted] = useState(false),
+        [originalArray, setOriginalArray]=useState(from.current)
 
     const fixStr=(str)=>{
             let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
@@ -52,13 +55,31 @@ const Edit=()=>{
         let newArray = arr
         const index=newArray.findIndex(p=>p.id===id)
         console.log(index)
-        newArray[index].name='Ju-Ju'
+        newArray[index].name ='juju'
         console.log(newArray)
         return newArray
     }
 
+   function replaceArrayById(originalArray,newArray){
+       console.log(originalArray)
+        console.log(newArray)
+        let newArray33=[originalArray].slice();
 
+        const id =   [newArray].find(o=>o.id)
+        console.log(id)
+        const newItems=   [newArray33].findIndex(p=>p.id===id)
+        console.log(newItems)
+
+        let rest = [newArray33].slice(0,newItems)
+        rest.push(newArray)
+
+        console.log(newArray33)
+        //console.log(newObject)
+        return rest
+
+    }
     let finalArray;
+    let newPerson;
     const addNewPerson = async() => {
         if (hobbies.length<5){
             window.alert('Hobbies must be at least 5 characters long')
@@ -75,16 +96,19 @@ const Edit=()=>{
                 hobbies: hobbies
             })
          //   finalArray=await replaceItemsById(from.people, person)
-            finalArray=await replaceById(id,from.people, person)
+            console.log(person)
+            finalArray= replaceArrayById(originalArray,person)
             console.log(finalArray)
         }
     }
 //console.log(person)
-    const handleFirstNameChange=(e)=>{
+    const handleFirstNameChange=async(e)=>{
             e.preventDefault();
             // const {firstName, lastName, age, hobbies} = e.target;
-            setFirstName(e.target.value)
-
+           await setFirstName(e.target.value)
+        await setID(from.current.id)
+            console.log(firstName)
+        console.log(id)
 
         },
         handleLastNameChange=(e)=>{
@@ -110,6 +134,7 @@ const Edit=()=>{
         }
         if (hobbies.length > 4) {
             await setIsMounted(true)
+
             await addNewPerson()
             setSubmit(true);
             // addPerson(person)
