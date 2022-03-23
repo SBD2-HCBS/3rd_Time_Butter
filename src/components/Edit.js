@@ -6,7 +6,8 @@ import {updatePersonFunction} from "../ducks/actions";
 import '../App.css';
 const Edit=()=>{
     const location = useLocation()
-    const {from} = location.state
+
+    const {from} =  location.state
     //const person = useSelector(state=>state.person[from])
 
     const [submit,setSubmit] = useState(false)

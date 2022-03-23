@@ -47,6 +47,9 @@ const replaceItemsById =async(newArray)=>{
     // const id = newArray33.id
     console.log(initialState )
     console.log(newArray33,'33')
+    if(originalArray.length===0){
+      addPerson(newArray33)
+    }
     const newItems= originalArray.findIndex(p=>p.id===newArray33.id)
     console.log(newItems)
 
@@ -75,7 +78,7 @@ const filtered = (id,arr)=>{
                 }
             case 'ADD_PERSON':
                 let people = addPersonObj(action.payload)
-                initialState.id=initialState.id++
+                initialState.id=++initialState.id
                 return {
                     ...state,
                     id:initialState.id,

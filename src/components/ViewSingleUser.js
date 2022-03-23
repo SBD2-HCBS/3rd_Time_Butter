@@ -7,13 +7,14 @@ const ViewSingleUser=(props)=>{
     const location = useLocation()
     const {from} = location.state
 //const person = useSelector(state=>state.person[from])
-    console.log(from)
+    console.log(from.person)
     console.log(from.people.people )
 const people=React.useRef(from.people.people.find(item=>item.id===from.person))
     console.log(people)
     const isObjectEmpty=(obj={})=>{
         return Object.keys(obj).length === 0
     }
+
     return(
        !isObjectEmpty(people.current) ?
     <div className="App-header outSide ">
