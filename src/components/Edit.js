@@ -150,7 +150,7 @@ const Edit=()=>{
     useEffect(()=>{
         if(isMounted) {
             console.log('hit')
-         dispatch(addPersonFunction(person))
+         dispatch(updatePersonFunction(person))
 
         }
         return async()=> {

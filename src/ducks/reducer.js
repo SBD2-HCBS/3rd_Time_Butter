@@ -24,12 +24,9 @@ export function viewPerson(id){
     }
 }
 const fixStr=(str)=>{
-    let firstLetter = str.length>0?str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase():''
-if(firstLetter !== '') {
+    let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
     return firstLetter.replace(/\s/g, "")
-}else{
-    return ''
-}
+
 }
 const addPersonObj=(person)=>{
     let clone = JSON.parse(JSON.stringify(person))
@@ -44,11 +41,11 @@ const founder = (id, arr)=>{
     return newArray
 }
 
-const replaceItemsById =async(newArray)=>{
+const replaceItemsById =async(state,newArray)=>{
     let newArray33= await JSON.parse(JSON.stringify(newArray))
-    let originalArray = await JSON.parse(JSON.stringify(initialState.person))
+    let originalArray = await JSON.parse(JSON.stringify(state.person))
     // const id = newArray33.id
-    console.log(initialState )
+    console.log(state )
     console.log(newArray33,'33')
     if(originalArray.length===0){
       addPerson(newArray33)
@@ -94,7 +91,7 @@ const filtered = (id,arr)=>{
                     person:[...filteredList]
                 }
             case 'UPDATE_PERSON':
-                let answer = replaceItemsById(action.payload)
+                let answer = replaceItemsById(state.person,action.payload)
                 console.log(answer)
                 return{
                     ...state,

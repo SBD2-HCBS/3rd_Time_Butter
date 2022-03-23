@@ -32,10 +32,10 @@ const AddUser=(props)=>{
         age:'Your Age is must be between 1-110 years Old',
         hobbies:'Your Hobbies must be at least 5 characters long'
     }
-    const fixStr=async(str)=>{
+    const fixStr=(str)=>{
         let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
         if(firstLetter.length > 50) {
-           await setErrors([error.name])
+          setErrors([error.name])
             window.alert(`Max length is 50 characters; will only save the first 50 characters + :${firstLetter}`)
 
 
@@ -50,13 +50,10 @@ const AddUser=(props)=>{
             age = 110
         }
         return age
-        },
-        fixHobbies=(str)=>{
-
-        }
+        };
 
 // console.log(errors.length)
-
+console.log(firstName,lastName)
     const addNewPerson = async() => {
 
           if (hobbies.length < 5) {
@@ -66,7 +63,7 @@ const AddUser=(props)=>{
 
           }
           if (hobbies.length > 4 ) {
-
+              console.log(firstName,lastName)
                   await setID(statePerson)
                   await setPerson({
                       id: id,
@@ -148,7 +145,7 @@ if(errors.length > 0){
         }
         if (hobbies.length > 4) {
             await setIsMounted(true)
-
+            console.log(firstName,lastName)
             await addNewPerson()
             setSubmit(true);
             addPerson(person)
