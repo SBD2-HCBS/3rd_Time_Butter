@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react'
 import {useLocation,Link} from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
 // import {addPerson} from "../ducks/reducer";
-import {updatePersonFunction} from "../ducks/actions";
+import {addPersonFunction, updatePersonFunction} from "../ducks/actions";
 import '../App.css';
 const Edit=()=>{
     const location = useLocation()
@@ -19,7 +19,7 @@ const Edit=()=>{
     const [firstName,setFirstName] = useState(''),
 
         [lastName,setLastName] = useState(''),
-        [age,setAge] = useState(0),
+        [age,setAge] = useState(''),
         [hobbies,setHobbies] = useState(''),
         [id,setID] = useState(from.current.id),
         [person,setPerson] = useState({
@@ -36,6 +36,7 @@ const Edit=()=>{
             let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
             if(firstLetter.length > 50) {
                 window.alert(`Max length is 50 characters; will only save the first 50 characters + :${firstLetter}`)
+
                 firstLetter = firstLetter.slice(49)
                 // return firstLetter.replace(/\s/g,"")
             }
@@ -67,7 +68,7 @@ const Edit=()=>{
         let newArray33=[originalArray].slice();
         const id =   [newArray].find(o=>o.id)
         // console.log(id)
-        const newItems=   [newArray33].findIndex(p=>p.id===id)
+        const newItems= [newArray33].findIndex(p=>p.id===id)
         // console.log(newItems)
         let rest = [newArray33].slice(0,newItems)
         rest.push(newArray)
@@ -149,7 +150,7 @@ const Edit=()=>{
     useEffect(()=>{
         if(isMounted) {
             console.log('hit')
-         dispatch(updatePersonFunction(person))
+         dispatch(addPersonFunction(person))
 
         }
         return async()=> {
@@ -207,11 +208,12 @@ const Edit=()=>{
                         />
                     </div>
                 </fieldset>
+
                 <button >Submit Form</button>
-            </form>
             <Link to='/viewContainer'  >
                 <button>See List</button>
             </Link>
+            </form>
             {submit?(<div className='green'><h2>You Have Successfully updated a Person!</h2></div>):null}
         </div>
     )

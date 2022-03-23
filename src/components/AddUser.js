@@ -23,12 +23,22 @@ const AddUser=(props)=>{
             age,
             hobbies
         }),
-        [isMounted,setIsMounted] = useState(false);
+        [isMounted,setIsMounted] = useState(false),
+        [errors,setErrors] = useState([]),
+        [showErrorMessage,setShowErrorMessage] = useState(false)
 
-    const fixStr=(str)=>{
+    const error={
+       name:'Your first or last name need to be less than 50 characters',
+        age:'Your Age is must be between 1-110 years Old',
+        hobbies:'Your Hobbies must be at least 5 characters long'
+    }
+    const fixStr=async(str)=>{
         let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
         if(firstLetter.length > 50) {
+           await setErrors([error.name])
             window.alert(`Max length is 50 characters; will only save the first 50 characters + :${firstLetter}`)
+
+
            firstLetter = firstLetter.slice(49)
            // return firstLetter.replace(/\s/g,"")
         }
@@ -45,43 +55,65 @@ const AddUser=(props)=>{
 
         }
 
-
+// console.log(errors.length)
 
     const addNewPerson = async() => {
-       if (hobbies.length<5){
-           window.alert('Hobbies must be at least 5 characters long')
-           hobbyRef.current.focus();
-           return;
 
-       }if(hobbies.length>4) {
-           await setID(statePerson)
-           await setPerson({
-               id: id,
-               firstName: fixStr(firstName),
-               lastName: fixStr(lastName),
-               age: fixAge(age),
-               hobbies: hobbies
-           })
-       }
+          if (hobbies.length < 5) {
+              window.alert('Hobbies must be at least 5 characters long')
+              hobbyRef.current.focus();
+              return;
+
+          }
+          if (hobbies.length > 4 ) {
+
+                  await setID(statePerson)
+                  await setPerson({
+                      id: id,
+                      firstName: fixStr(firstName),
+                      lastName: fixStr(lastName),
+                      age: fixAge(age),
+                      hobbies: hobbies
+                  })
+              }
+
     }
+
+    useEffect(()=>{
+       setTimeout(()=>setErrors([]),2500)
+        // setErrors([])
+    },[showErrorMessage===false])
 
 useEffect(()=>{
     firstNameRef.current.focus()
 },[])
     useEffect(()=>{
         dispatch(initializedFunction())
+
 if(isMounted) {
+if(errors.length > 0){
+    console.log(errors)
+    setShowErrorMessage(true)
+    firstNameRef.current.focus()
+    return()=>{
+        setTimeout(()=> {
+            setShowErrorMessage(false)
+        },2500)
+    }
+
+}else {
     dispatch(addPersonFunction(person))
-
+    return async()=> {
+        await setIsMounted(false)
+        setTimeout(() => {
+            setSubmit(false)
+        }, 1500)
+    }
 }
-        return async()=> {
-    await setIsMounted(false)
-            setTimeout(() => {
-                setSubmit(false)
-            }, 1500)
-        }
+}
 
-    },[person])
+
+    },[person,errors])
 
 
 
@@ -132,6 +164,15 @@ if(isMounted) {
 
     return(
         <div className="App-header outSide" >
+
+            {showErrorMessage ?(
+                <div>
+                    <h3>Errors</h3>
+                    {errors.map((error, index) => (
+                        <span key={index}>{error}</span>
+                    ))}
+                </div>
+            ):null}
         <form onSubmit={handleSubmit}>
                     <span id='spans'><h2>Fill Out Form</h2></span>
 

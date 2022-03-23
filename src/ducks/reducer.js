@@ -24,9 +24,12 @@ export function viewPerson(id){
     }
 }
 const fixStr=(str)=>{
-    let firstLetter = str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase()
-
-    return firstLetter.replace(/\s/g,"")
+    let firstLetter = str.length>0?str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase():''
+if(firstLetter !== '') {
+    return firstLetter.replace(/\s/g, "")
+}else{
+    return ''
+}
 }
 const addPersonObj=(person)=>{
     let clone = JSON.parse(JSON.stringify(person))
