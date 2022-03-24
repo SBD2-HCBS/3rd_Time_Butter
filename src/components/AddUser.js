@@ -53,7 +53,6 @@ const AddUser=(props)=>{
         };
 
 // console.log(errors.length)
-console.log(firstName,lastName)
     const addNewPerson = async() => {
 
           if (hobbies.length < 5) {

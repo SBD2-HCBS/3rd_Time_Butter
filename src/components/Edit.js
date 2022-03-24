@@ -63,17 +63,20 @@ const Edit=()=>{
     // }
 
    function replaceArrayById(originalArray,newArray){
-       // console.log(originalArray)
-       //  console.log(newArray)
-        let newArray33=[originalArray].slice();
-        const id =   [newArray].find(o=>o.id)
-        // console.log(id)
-        const newItems= [newArray33].findIndex(p=>p.id===id)
-        // console.log(newItems)
-        let rest = [newArray33].slice(0,newItems)
-        rest.push(newArray)
+
+   let rest;
+
+       //  let newArray33=[originalArray].slice();
+       // console.log(newArray33)
+       //  const id =   [newArray].find(o=>o.id)
+       //  // console.log(id)
+       //  const newItems= [newArray33].findIndex(p=>p.id===id)
+       //  // console.log(newItems)
+       //  let rest = [newArray33].slice(0,newItems)
+       //  rest.push(newArray)
         // console.log(newArray33)
         //console.log(newObject)
+
         return rest
     }
     let finalArray;
@@ -94,9 +97,9 @@ const Edit=()=>{
                 hobbies: hobbies
             })
          //   finalArray=await replaceItemsById(from.people, person)
-            console.log(person)
-            finalArray= replaceArrayById(originalArray,person)
-            console.log(finalArray)
+
+            // finalArray= replaceArrayById(originalArray,person)
+            // console.log(finalArray)
         }
     }
 //console.log(person)
@@ -149,7 +152,8 @@ const Edit=()=>{
     },[])
     useEffect(()=>{
         if(isMounted) {
-            console.log('hit')
+            console.log(person,'person')
+
          dispatch(updatePersonFunction(person))
 
         }
@@ -166,12 +170,10 @@ const Edit=()=>{
         <div className="App-header outSide">
             <form onSubmit={handleSubmit}>
                 <span id='spans'><h2>Update Your Form</h2></span>
-                <fieldset className="container">
-                    <span><h2>Full Name: {from.current.firstName} {from.current.lastName}</h2>
-        <h2>Age: {from.current.age}</h2>
-        <h3>Hobbies: {from.current.hobbies}</h3>
-                    </span>
-                    <div id='form' >
+                <span><h2>Full Name: {!firstName?from.current.firstName:firstName} {!lastName?from.current.lastName:lastName}</h2></span>
+                <h2>Age: {!age?from.current.age:age}</h2>
+                <h3>Hobbies: {!hobbies?from.current.hobbies:hobbies}</h3>
+                <div id='form' >
                         <input
                             type='text'
                             name={firstName}
@@ -207,7 +209,6 @@ const Edit=()=>{
                             ref={hobbyRef}
                         />
                     </div>
-                </fieldset>
 
                 <button >Submit Form</button>
             <Link to='/viewContainer'  >

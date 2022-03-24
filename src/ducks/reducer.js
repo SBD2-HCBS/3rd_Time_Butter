@@ -28,19 +28,37 @@ const fixStr=(str)=>{
     return firstLetter.replace(/\s/g, "")
 
 }
-const addPersonObj=(person)=>{
-    let clone = JSON.parse(JSON.stringify(person))
-    clone.id=initialState.id
-    clone.firstName = fixStr(person.firstName)
-    clone.lastName = fixStr(person.lastName)
-    return clone
-}
 const founder = (id, arr)=>{
     let newArray=[];
     newArray= arr.find(item=>item.id===id)
     return newArray
 }
 
+const addPersonObj=(person )=>{
+    let clone =  JSON.parse(JSON.stringify(person))
+    //check to see if id exist currently
+
+
+    clone.id=initialState.id
+
+
+    clone.firstName = fixStr(person.firstName)
+    clone.lastName = fixStr(person.lastName)
+    return clone
+}
+const updatePersonFunction=(person,state)=>{
+    let clone =  JSON.parse(JSON.stringify(person))
+    console.log(state)
+    console.log(clone,'clone')
+    //check to see if id exist currently
+    let newState = JSON.parse(JSON.stringify(state))
+    let checkID = state.person.findIndex(person=>person.id===clone.id)
+
+    console.log(checkID,'id')
+  newState.person[checkID] = clone
+    console.log(newState)
+    return newState
+}
 const replaceItemsById =async(state,newArray)=>{
     let newArray33= await JSON.parse(JSON.stringify(newArray))
     let originalArray = await JSON.parse(JSON.stringify(state.person))
@@ -65,7 +83,7 @@ const filtered = (id,arr)=>{
     let clone = JSON.parse(JSON.stringify(arr))
     let newArray;
     //clone.splice(id,1);
- if (id!==-1)  newArray=clone.filter((item,index)=>item.id!==id)
+    newArray=clone.filter((item,index)=>item.id!==id)
 
     return  newArray;
 }
@@ -86,16 +104,17 @@ const filtered = (id,arr)=>{
                 }
             case 'DELETE_PERSON':
                 let filteredList = filtered(action.payload,state.person)
+                console.log(filteredList)
                 return {
-
+                    ...state,
                     person:[...filteredList]
                 }
             case 'UPDATE_PERSON':
-                let answer = replaceItemsById(state.person,action.payload)
-                console.log(answer)
+                let answer = updatePersonFunction(action.payload,state)
+
                 return{
                     ...state,
-                    person:[answer]
+                   ...answer
                 }
 
             case 'VIEW_PERSON':
